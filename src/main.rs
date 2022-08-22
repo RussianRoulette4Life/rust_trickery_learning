@@ -2,7 +2,7 @@ use std::io;
 
 fn main(){
 	println!("rust trickery! this one can find common denominators of 2 positive integers. go ahead, type em out!");
-	let str_thingy: String = String::from("hey mate wth");
+	let str_thingy: String = String::from("hey mate wth");git
 	loop {
 		let mut input1 = String::new();
 		let mut input2 = String::new();
