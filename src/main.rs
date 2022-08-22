@@ -1,55 +1,34 @@
 use std::io;
 
 fn main(){
-	println!("rust trickery! this one can find common denominators of 2 positive integers. go ahead, type em out!");
-	let str_thingy: String = String::from("hey mate wth");git
+	println!("He-hey! More rust trickery! This time, the program recieves a sentence from YOU, and gives you an output with a lot of cool stuff!");
 	loop {
-		let mut input1 = String::new();
-		let mut input2 = String::new();
-		println!("Enter 2 numbers!");
+		println!("Enter a sentence: ");
+		let mut sentence: String = String::new();
 		io::stdin()
-			.read_line(&mut input1)
-			.expect("ey man wtf");
-		io::stdin()
-			.read_line(&mut input2)
-			.expect("ey man wtf");
-		let input1: u32 = match input1.trim().parse() {
-			Ok(num) => num,
-			Err(_) => {
-				println!("bro enter a positive integer dammit (returning value: 0)");
-				0
-			},
-		};
-		let input2: u32 = match input2.trim().parse() {
-			Ok(num) => num,
-			Err(_) => {
-				println!("bro enter a positive integer dammit (returning value: 0)");
-				0
-			},
-		};
-		find_common_denominators_of_2_nums(input1, input2);
+			.read_line(&mut sentence)
+			.expect("what did you do???");
+		let (amount_of_words, last_character_index, index_last) = count_words(&sentence);
+		println!("the goofy stuff - words: {}, last character num: {}, last index: {}",amount_of_words, last_character_index, index_last) 
 	}
 }
-fn find_common_denominators_of_2_nums(x: u32, y: u32) {
-	let mut common_denominator_count: u32 = 0;
-	let bigger_number: u32 = if x > y {x} else {y};
-	let amount_of_iterations: u32= if bigger_number % 2 == 0{
-		bigger_number/2
-	}
-	else {
-		((bigger_number) / 2) as u32
-	};
-	println!("List of all common denominators (except for 1) of {} and {}: ",x,y);
-	if x != y {
-		for num in 2..amount_of_iterations {
-			if (x % num == 0) && (y % num == 0) {
-				common_denominator_count +=1;
-				println!("{common_denominator_count}. {num}");
-			}
+fn count_words (string_sentence: &String) -> (i32, i32, i32){
+	let mut amount_of_words = 1;
+	let mut last_character_index = 9999999;
+	let mut index_last = 0;
+	let bytes = string_sentence.as_bytes();
+	for (i, &item) in bytes.iter().enumerate() {
+		if (item != 32) && (item != 10){
+			last_character_index = i;
 		}
-	} else {
-		println!("They're the same lol")
+        if (item == 32) && (i <= last_character_index + 1) && (last_character_index != 9999999) {
+			amount_of_words = amount_of_words + 1;
+		}
+		index_last = i;
+    }
+	let slice_of_string: &str = &string_sentence[last_character_index+1..index_last];
+	if slice_of_string != ""{
+		amount_of_words = amount_of_words-1;
 	}
-
-	println!("Amount of common denominators: {}", common_denominator_count)
+	(amount_of_words, last_character_index.try_into().unwrap(), index_last.try_into().unwrap()) 
 }
