@@ -23,6 +23,8 @@ fn main(){
 fn count_and_disect_words (string_sentence: &String) -> (i32, i32){
 	let mut amount_of_words = 0;
 	let mut index_last = 0;
+	// made to prevent 2 spaces count as a separate word
+	let mut last_character_index = 0;
 	// for fun :)
 	if string_sentence == "" {
 		println!("why?")
@@ -35,9 +37,10 @@ fn count_and_disect_words (string_sentence: &String) -> (i32, i32){
 	// word detection, that's it
 	for (i, character) in string_sentence.chars().into_iter().enumerate() {
 		if (character != ' ') && (character != '\n'){
+			last_character_index = i;
 			detected_word.push(character);
 		}
-        if character == ' ' {
+        if (character == ' ') && (i <= last_character_index + 1) {
 			amount_of_words = amount_of_words + 1;
 			println!("{}. {}",amount_of_words, detected_word);
 			detected_word = String::new();
