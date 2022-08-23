@@ -36,10 +36,14 @@ fn count_and_disect_words (string_sentence: &String) -> (i32, i32){
 	let mut detected_word: String = String::new();
 	// word detection, that's it
 	for (i, character) in string_sentence.chars().into_iter().enumerate() {
-		if (character != ' ') && (character != '\n'){
-			last_character_index = i;
+		if (character != ' ') && (character != '\n') {
 			detected_word.push(character);
 		}
+		last_character_index = if (character != ' ') && (character != '\n') && (character != '-') {
+			i
+		} else {
+			last_character_index
+		};
         if (character == ' ') && (i <= last_character_index + 1) {
 			amount_of_words = amount_of_words + 1;
 			println!("{}. {}",amount_of_words, detected_word);
