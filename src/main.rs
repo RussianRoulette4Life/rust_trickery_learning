@@ -1,34 +1,50 @@
 use std::io;
 
+
 fn main(){
 	println!("He-hey! More rust trickery! This time, the program recieves a sentence from YOU, and gives you an output with a lot of cool stuff!");
 	loop {
 		println!("Enter a sentence: ");
+		// creates a mutatable string (it has to be this wayy)
 		let mut sentence: String = String::new();
 		io::stdin()
 			.read_line(&mut sentence)
 			.expect("what did you do???");
-		let (amount_of_words, last_character_index, index_last) = count_words(&sentence);
-		println!("the goofy stuff - words: {}, last character num: {}, last index: {}",amount_of_words, last_character_index, index_last) 
+		// its a pain to work with an untrimmed string
+		let trimmed_string = sentence.trim().to_string();
+		// this kind of assignment of values is convenient asf
+		let (amount_of_words, index_last) = count_and_disect_words(&trimmed_string);
+		// print everything outte
+		println!("The original string: {}", trimmed_string);
+		println!("the goofy stuff - words: {}, last character num: i dunno, this variable is redundant, last index: {}",amount_of_words, index_last) 
 	}
 }
-fn count_words (string_sentence: &String) -> (i32, i32, i32){
-	let mut amount_of_words = 1;
-	let mut last_character_index = 9999999;
+// it HAS to take a reference, not a chance at the original
+fn count_and_disect_words (string_sentence: &String) -> (i32, i32){
+	let mut amount_of_words = 0;
 	let mut index_last = 0;
-	let bytes = string_sentence.as_bytes();
-	for (i, &item) in bytes.iter().enumerate() {
-		if (item != 32) && (item != 10){
-			last_character_index = i;
+	// for fun :)
+	if string_sentence == "" {
+		println!("why?")
+	}
+	// prints ALL characters
+	for character in string_sentence.chars(){
+		println!("{}", character)
+	}
+	let mut detected_word: String = String::new();
+	// word detection, that's it
+	for (i, character) in string_sentence.chars().into_iter().enumerate() {
+		if (character != ' ') && (character != '\n'){
+			detected_word.push(character);
 		}
-        if (item == 32) && (i <= last_character_index + 1) && (last_character_index != 9999999) {
+        if character == ' ' {
 			amount_of_words = amount_of_words + 1;
+			println!("{}. {}",amount_of_words, detected_word);
+			detected_word = String::new();
 		}
 		index_last = i;
     }
-	let slice_of_string: &str = &string_sentence[last_character_index+1..index_last];
-	if slice_of_string != ""{
-		amount_of_words = amount_of_words-1;
+	// print what cant return, return what can
+	println!("{}. {}",&amount_of_words + 1, &detected_word);
+	(amount_of_words+1, index_last.try_into().unwrap()) 
 	}
-	(amount_of_words, last_character_index.try_into().unwrap(), index_last.try_into().unwrap()) 
-}
