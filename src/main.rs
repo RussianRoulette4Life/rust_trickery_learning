@@ -1,55 +1,50 @@
 use std::io;
 
-fn main(){
-	println!("rust trickery! this one can find common denominators of 2 positive integers. go ahead, type em out!");
-	let str_thingy: String = String::from("hey mate wth");
-	loop {
-		let mut input1 = String::new();
-		let mut input2 = String::new();
-		println!("Enter 2 numbers!");
-		io::stdin()
-			.read_line(&mut input1)
-			.expect("ey man wtf");
-		io::stdin()
-			.read_line(&mut input2)
-			.expect("ey man wtf");
-		let input1: u32 = match input1.trim().parse() {
-			Ok(num) => num,
-			Err(_) => {
-				println!("bro enter a positive integer dammit (returning value: 0)");
-				0
-			},
-		};
-		let input2: u32 = match input2.trim().parse() {
-			Ok(num) => num,
-			Err(_) => {
-				println!("bro enter a positive integer dammit (returning value: 0)");
-				0
-			},
-		};
-		find_common_denominators_of_2_nums(input1, input2);
-	}
-}
-fn find_common_denominators_of_2_nums(x: u32, y: u32) {
-	let mut common_denominator_count: u32 = 0;
-	let bigger_number: u32 = if x > y {x} else {y};
-	let amount_of_iterations: u32= if bigger_number % 2 == 0{
-		bigger_number/2
-	}
-	else {
-		((bigger_number) / 2) as u32
-	};
-	println!("List of all common denominators (except for 1) of {} and {}: ",x,y);
-	if x != y {
-		for num in 2..amount_of_iterations {
-			if (x % num == 0) && (y % num == 0) {
-				common_denominator_count +=1;
-				println!("{common_denominator_count}. {num}");
-			}
-		}
-	} else {
-		println!("They're the same lol")
-	}
 
-	println!("Amount of common denominators: {}", common_denominator_count)
+fn main(){
+	println!("He-hey! More rust trickery! This time, the program recieves a sentence from YOU, and gives you an output with a lot of cool stuff!");
+	loop {
+		println!("Enter a sentence: ");
+		// creates a mutatable string (it has to be this wayy)
+		let mut sentence: String = String::new();
+		io::stdin()
+			.read_line(&mut sentence)
+			.expect("what did you do???");
+		// its a pain to work with an untrimmed string
+		let trimmed_string = sentence.trim().to_string();
+		// this kind of assignment of values is convenient asf
+		let (amount_of_words, index_last) = count_and_disect_words(&trimmed_string);
+		// print everything outte
+		println!("The original string: {}", trimmed_string);
+		println!("the goofy stuff - words: {}, last character num: i dunno, this variable is redundant, last index: {}",amount_of_words, index_last) 
+	}
 }
+// it HAS to take a reference, not a chance at the original
+fn count_and_disect_words (string_sentence: &String) -> (i32, i32){
+	let mut amount_of_words = 0;
+	let mut index_last = 0;
+	// for fun :)
+	if string_sentence == "" {
+		println!("why?")
+	}
+	// prints ALL characters
+	for character in string_sentence.chars(){
+		println!("{}", character)
+	}
+	let mut detected_word: String = String::new();
+	// word detection, that's it
+	for (i, character) in string_sentence.chars().into_iter().enumerate() {
+		if (character != ' ') && (character != '\n'){
+			detected_word.push(character);
+		}
+        if character == ' ' {
+			amount_of_words = amount_of_words + 1;
+			println!("{}. {}",amount_of_words, detected_word);
+			detected_word = String::new();
+		}
+		index_last = i;
+    }
+	// print what cant return, return what can
+	println!("{}. {}",&amount_of_words + 1, &detected_word);
+	(amount_of_words+1, index_last.try_into().unwrap()) 
+	}
