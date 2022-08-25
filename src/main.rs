@@ -1,3 +1,4 @@
+use reqwest::header::{HeaderName, HeaderMap, HeaderValue};
 struct Country {
     official_name: String,
     shorthand_name: String,
@@ -9,6 +10,9 @@ struct Country {
     gdp: u64,
     debt: i64,
 }
+
 fn main() {
-    
+    let header_map: HeaderMap = HeaderMap::new();
+    header_map.insert(ACCEPT, "text/html")
+    let response1= reqwest::blocking::get("https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population");
 }
