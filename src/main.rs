@@ -13,16 +13,17 @@ fn main(){
 		// its a pain to work with an untrimmed string
 		let trimmed_string = sentence.trim().to_string();
 		// this kind of assignment of values is convenient asf
-		let (amount_of_words, index_last) = count_and_disect_words(&trimmed_string);
+		let (amount_of_words, index_last, list_of_words) = count_and_disect_words(&trimmed_string);
 		// print everything outte
 		println!("The original string: {}", trimmed_string);
-		println!("the goofy stuff - words: {}, last character num: i dunno, this variable is redundant, last index: {}",amount_of_words, index_last) 
+		println!("the goofy stuff - words: {}, list of all words: {:#?}, last index: {}",amount_of_words, list_of_words, index_last) 
 	}
 }
 // it HAS to take a reference, not a chance at the original
-fn count_and_disect_words (string_sentence: &String) -> (i32, i32){
+fn count_and_disect_words (string_sentence: &String) -> (i32, i32, Vec<String>){
 	let mut amount_of_words = 0;
 	let mut index_last = 0;
+    let mut list_of_words: Vec<String> = [].to_vec();
 	// made to prevent 2 spaces count as a separate word
 	let mut last_character_index = 0;
 	// for fun :)
@@ -47,11 +48,16 @@ fn count_and_disect_words (string_sentence: &String) -> (i32, i32){
         if (character == ' ') && (i <= last_character_index + 1) {
 			amount_of_words = amount_of_words + 1;
 			println!("{}. {}",amount_of_words, detected_word);
+            list_of_words.push(detected_word);
 			detected_word = String::new();
 		}
 		index_last = i;
     }
 	// print what cant return, return what can
-	println!("{}. {}",&amount_of_words + 1, &detected_word);
-	(amount_of_words+1, index_last.try_into().unwrap()) 
+
+    println!("{}. {}",&amount_of_words + 1, &detected_word);
+
+    list_of_words.push(detected_word);
+
+	(amount_of_words+1, index_last.try_into().unwrap(), list_of_words) 
 	}
