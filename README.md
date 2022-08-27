@@ -1,4 +1,6 @@
 # rust_trickery_learning
-do i look like i know ``hwat a JPEG IS?``
+wtf goin on in kanye dicord server :lmao:````
 
-*__word detection~__*
+*__html table parser~__*
+
+basically i feed it a table with all countries' numbers (population, area, etc.) and construct it into objects, and returning it when you type a name of the country! right now i am just trying to parse html correctly
