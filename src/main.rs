@@ -1,6 +1,8 @@
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
+mod word_detection;
+use crate::word_detection::count_and_disect_words;
 struct Country {
     official_name: String,
     shorthand_name: String,
@@ -30,9 +32,9 @@ fn main() {
         Err(why) => panic!("couldn't read {}: {}", display, why),
         Ok(_) => print!("file parsed successfully"),
     }
-    let html = String::from("<body>smth</body>");
-    let parsed_info = parse_html(&s);
-    println!("info: {}", parsed_info.replace("\n", " "));
+    let parsed_info = String::from((parse_html(&s).replace("\n", " ")).trim());
+    let amount_of_words = (count_and_disect_words(&parsed_info)).2;
+    println!("{:#?}", amount_of_words);
     // `file` goes out of scope, and the "hello.txt" file gets closed
 }
 fn parse_html(html: &String) -> String{
