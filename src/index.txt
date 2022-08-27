@@ -1,0 +1,26 @@
+<tbody>
+<tr>
+<td style="text-align:center"><b>–</b>
+</td>
+<td><b>World</b>
+</td>
+<td style="text-align:center">All</td>
+<td style="text-align:center"><b> 7,973,209,000</b></td>
+<td style="text-align:right"><b>100%</b></td>
+<td><b><span data-sort-value="000000002022-08-24-0000" style="white-space:nowrap">24 Aug 2022</span></b></td>
+<td style="text-align:left"><b>UN projection<sup id="cite_ref-unpop_2-1" class="reference"><a href="#cite_note-unpop-2">[2]</a></sup></b></td>
+<td>
+</td></tr>
+<tr>
+<th>1
+</th>
+<td scope="row" style="text-align:left"><span class="flagicon"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/23px-Flag_of_the_People%27s_Republic_of_China.svg.png" decoding="async" class="thumbborder" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/35px-Flag_of_the_People%27s_Republic_of_China.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/45px-Flag_of_the_People%27s_Republic_of_China.svg.png 2x" data-file-width="900" data-file-height="600" width="23" height="15"></span>&nbsp;<a href="/wiki/Demographics_of_China" title="Demographics of China">China</a></td>
+<td style="text-align:center"><a href="/wiki/Asia" title="Asia">Asia</a></td>
+<td style="text-align:right">1,412,600,000</td>
+<td style="text-align:right;font-size:inherit"><span data-sort-value="7,001,177,168,314,539,000♠" style="display:none"></span>17.7%
+</td>
+<td><span data-sort-value="000000002021-12-31-0000" style="white-space:nowrap">31 Dec 2021</span></td>
+<td style="text-align:left">Official estimate<sup id="cite_ref-4" class="reference"><a href="#cite_note-4">[3]</a></sup></td>
+<td>Excludes <a href="/wiki/Hong_Kong" title="Hong Kong">Hong Kong</a> and <a href="/wiki/Macau" title="Macau">Macau</a>
+</td></tr>
+</tbody>
